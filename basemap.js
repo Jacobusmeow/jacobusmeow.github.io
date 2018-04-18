@@ -6,19 +6,34 @@ let myLayers = {
         "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
     ),
     geolandbasemap : L.tileLayer (
-        "https://maps.wien.gv.at/basemap/geolandbasemap/normal/google3857/{z}/{y}/{x}.png"
+        "https://{s}.wien.gv.at/basemap/geolandbasemap/normal/google3857/{z}/{y}/{x}.png", {
+            subdomains : ["maps", "maps1", "maps2", "maps3", "maps4"], // die subdomains, die beim ansprechen für {s} genutzt werden
+            attribution : "Datenquelle: <a href='www,basemap.at'>basemap.at" //korrekte datenquelle hinzugefügt
+        }
     ),
     bmapoverlay : L.tileLayer (
-        "https://maps1.wien.gv.at/basemap/bmapoverlay/normal/google3857/{z}/{y}/{x}.png"
+        "https://{s}.wien.gv.at/basemap/bmapoverlay/normal/google3857/{z}/{y}/{x}.png", {
+            subdomains : ["maps", "maps1", "maps2", "maps3", "maps4"], // die subdomains, die beim ansprechen für {s} genutzt werden
+            attribution : "Datenquelle: <a href='www,basemap.at'>basemap.at" //korrekte datenquelle hinzugefügt
+        }
     ),
     bmapgrau : L.tileLayer (
-        "https://maps1.wien.gv.at/basemap/bmapgrau/normal/google3857/{z}/{y}/{x}.png"
+        "https://{s}.wien.gv.at/basemap/bmapgrau/normal/google3857/{z}/{y}/{x}.png", {
+            subdomains : ["maps", "maps1", "maps2", "maps3", "maps4"], // die subdomains, die beim ansprechen für {s} genutzt werden
+            attribution : "Datenquelle: <a href='www,basemap.at'>basemap.at" //korrekte datenquelle hinzugefügt
+        }
     ),
     bmaphidpi : L.tileLayer (
-        "https://maps1.wien.gv.at/basemap/bmaphidpi/normal/google3857/{z}/{y}/{x}.jpeg"
+        "https://{s}.wien.gv.at/basemap/bmaphidpi/normal/google3857/{z}/{y}/{x}.jpeg", {
+            subdomains : ["maps", "maps1", "maps2", "maps3", "maps4"], // die subdomains, die beim ansprechen für {s} genutzt werden
+            attribution : "Datenquelle: <a href='www,basemap.at'>basemap.at" //korrekte datenquelle hinzugefügt
+        }
     ),
     bmaporthofoto30cm : L.tileLayer (
-        "https://maps1.wien.gv.at/basemap/bmaporthofoto30cm/normal/google3857/{z}/{y}/{x}.jpeg"
+        "https://{s}.wien.gv.at/basemap/bmaporthofoto30cm/normal/google3857/{z}/{y}/{x}.jpeg", {
+            subdomains : ["maps", "maps1", "maps2", "maps3", "maps4"], // die subdomains, die beim ansprechen für {s} genutzt werden
+            attribution : "Datenquelle: <a href='www,basemap.at'>basemap.at" //korrekte datenquelle hinzugefügt
+        }
     )
 };
 
