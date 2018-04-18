@@ -45,10 +45,12 @@ myMap.addLayer(myLayers.osm);
 let myMapControl = L.control.layers({
     "Openstreetmap" : myLayers.osm,
     "Geolandbasemap" : myLayers.geolandbasemap,
-    "bmapoverlay" : myLayers.bmapoverlay,
+    
     "bmapgrau" : myLayers.bmapgrau,
     "bmaphidpi" : myLayers.bmaphidpi,
     "Orthofoto 30cm" : myLayers.bmaporthofoto30cm,
+},{
+    "bmapoverlay" : myLayers.bmapoverlay, // schrift kann in allen anderen Layern angezeigt werden
 })
 myMap.addControl(myMapControl);
 // wechsel zwischen den verschiedenen Karten funktioniert
