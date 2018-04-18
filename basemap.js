@@ -18,12 +18,12 @@ let myLayers = {
         "https://maps1.wien.gv.at/basemap/bmaphidpi/normal/google3857/{z}/{y}/{x}.jpeg"
     ),
     bmaporthofoto30cm : L.tileLayer (
-        "https://maps1.wien.gv.at/basemap/bmaphidpi/normal/google3857/{z}/{y}/{x}.jpeg"
+        "https://maps1.wien.gv.at/basemap/bmaporthofoto30cm/normal/google3857/{z}/{y}/{x}.jpeg"
     )
 };
 
 
-myMap.addLayer(myLayers.bmapoverlay);
+myMap.addLayer(myLayers.bmaporthofoto30cm);
 //Karte und Layer werden zusammen gefügt
 myMap.setView([47.267,11.383], 11);
 //definiert den Ausschnitt. 11 ist der zoomfaktor
