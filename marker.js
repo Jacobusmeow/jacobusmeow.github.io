@@ -81,8 +81,21 @@ let myScale = L.control.scale({ //DOCLink: http://leafletjs.com/reference-1.3.0.
     updateWhenIdle : true, //DOCLink: http://leafletjs.com/reference-1.3.0.html#control-scale-updatewhenidle
 }).addTo(myMap);
 
-L.marker([47.264, 11.385], {
+const uni = [47.264, 11.385];
+// konstante variable hinzugefügt, um die koordinaten nicht ständig eingeben zu müssen, Konstante für die Optionen der unterschiedlichen Marker angegeben
+const usi = [47.257, 11.356];
+const technik = [47.263, 11.343];
+const markerOptions = {
     title : "Universität Innsbruck", 
-    autoPan : true, 
-}).addTo(myMap);
+    opacity : 0.8, 
+    draggable : true,
+};
+L.marker(uni, markerOptions).addTo(myMap);
 //marker mit der Position der Hauptuni Innsbruck hinzugefügt
+
+L.marker(usi, markerOptions).addTo(myMap);
+
+L.marker(technik, markerOptions).addTo(myMap);
+
+
+myMap.setView(uni, 16);
