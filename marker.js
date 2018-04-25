@@ -80,3 +80,6 @@ let myScale = L.control.scale({ //DOCLink: http://leafletjs.com/reference-1.3.0.
     position : "bottomleft", //DOCLink: http://leafletjs.com/reference-1.3.0.html#control-scale-position
     updateWhenIdle : true, //DOCLink: http://leafletjs.com/reference-1.3.0.html#control-scale-updatewhenidle
 }).addTo(myMap);
+
+L.marker([47.264, 11.385]).addTo(myMap);
+//marker mit der Position der Hauptuni Innsbruck hinzugefügt
