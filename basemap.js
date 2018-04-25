@@ -4,7 +4,10 @@ let myMap = L.map("mapdiv");
 let myLayers = {
 
     osm : L.tileLayer ( // DOCLink: http://leafletjs.com/reference-1.3.0.html#tilelayer-l-tilelayer
-        "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+        "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+       // subdomains : ["maps", "maps1", "maps2", "maps3", "maps4"], Osm wird nicht angezeigt, warum?
+        attribution : "Datenquelle: <a href='https://www.openstreetmap.org'>osm.org"
+    } 
     ),
     geolandbasemap : L.tileLayer (
         "https://{s}.wien.gv.at/basemap/geolandbasemap/normal/google3857/{z}/{y}/{x}.png", {
@@ -39,7 +42,7 @@ let myLayers = {
 };
 
 
-myMap.addLayer(myLayers.osm);//DOCLink: http://leafletjs.com/reference-1.3.0.html#layergroup-addlayer
+myMap.addLayer(myLayers.osm);//DOCLink: http://leafletjs.com/reference-1.3.0.html#map-addlayer
 //fügt die verschieden Layer hinzu 
 
 
