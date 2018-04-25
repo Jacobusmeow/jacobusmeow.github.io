@@ -95,6 +95,7 @@ const markerOptions = {
     opacity : 0.8, 
     draggable : true,
 };
+
 L.marker(uni, markerOptions).addTo(markerGroup);
 //marker mit der Position der Hauptuni Innsbruck hinzugefügt
 
@@ -104,14 +105,20 @@ L.marker(technik, markerOptions).addTo(markerGroup);
 
 L.marker(patscherkofl).addTo(markerGroup);
 L.marker(igls).addTo(markerGroup);
+
 myMap.fitBounds(markerGroup.getBounds()); //wie sind die marker verteilt? der anzeigte ausschnitt wird so gewählt, dass alle zu sehen sind. 
 
 let patscherkoflMarker = L.marker(patscherkofl).addTo(markerGroup);
 patscherkoflMarker.bindPopup("<p>Igls vom Patscherkofl</p><img style='width:200px' src='js/leaflet/images/iglsvonpatsch.jpg' alt='Patscherkofl Aussicht auf Igls' />");
 
+//die zwei marker mit einer roten linie verbinden 
 
+let lift = [
+    patscherkofl,
+    igls
+];
+let polyline = L.polyline(lift, {color: 'red'}).addTo(myMap);
+let uniPolyline = L.polyline([usi, technik, uni]).addTo(myMap);
+let uniPatschPoly = L.polyline([uni, patscherkofl]).addTo(myMap);
 
-//marker.bindPopup().openPopup().addTo(myMap);
-
-
-//src="js\leaflet\images\iglsvonpatsch.jpg"
+    
