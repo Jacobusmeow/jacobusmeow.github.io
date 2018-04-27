@@ -1,5 +1,17 @@
 let myMap = L.map("mapdiv");
 let markerGroup = L.featureGroup();
+
+/*
+vielleicht kann ich die Marker über diese funktion als Overlay hinzufügen??
+
+var layer = L.Marker(latlng).addTo(map);
+layer.addTo(map);
+layer.remove();
+
+oder diese hier: 
+http://leafletjs.com/reference-1.3.0.html#evented
+
+*/
 let myLayers = {
 
 
@@ -89,6 +101,7 @@ const wetterstationen = {
 
 const gehrenspitze = [47.387131, 11.133717];
 const hafelekar = [47.312079, 11.383623];
+const schlickeralm = [47.154432, 11.303207];
 const markeroptionen = {
     title : "Wetterstation",
     opacity : 0.8,
@@ -96,6 +109,10 @@ const markeroptionen = {
 
 L.marker(gehrenspitze, markeroptionen).addTo(markerGroup);
 L.marker(hafelekar, markeroptionen).addTo(markerGroup);
-
+L.marker(schlickeralm, markeroptionen).addTo(markerGroup);
 let wetterstationHafele = L.marker(hafelekar).addTo(markerGroup);
-wetterstationHafele.bindPopup("<p>Wetterinformationen</p><img style='width:400px' scr='js/leaflet/images/puitegg.png' alt='Bild mit Wetterinformationen'/>");
+let wetterstationGehrenspitze=L.marker(gehrenspitze).addTo(markerGroup);
+let wetterstationSchlickeralm=L.marker(schlickeralm).addTo(markerGroup);
+wetterstationGehrenspitze.bindPopup("<p>Wetterinformationen</p><img style='width:400px' scr='js/leaflet/images/puitegg.png' alt='Bild mit Wetterinformationen'/>");
+wetterstationHafele.bindPopup("<p>Wetterinformationen</p><img style='width:400px' src='....' alt='Bild mit Wetterinformationen'/>");
+wetterstationSchlickeralm.bindPopup("<p><h3>Wetterstation Schlicker Alm (1645m) und Sennjoch(2230)</h3><ul><li>Aktuelle Temp. (°C): 5,0</li><li><a href='https://lawine.tirol.gv.at/data/grafiken/540/standard/dreitage/schlickeralm.png'/> </li> </ul></p><img style='width:400px'/>");
