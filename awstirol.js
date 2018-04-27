@@ -40,7 +40,7 @@ let myLayers = {
         }
     )/*
     aws : L.tileLayer(
-        "https://lawine.tirol.gv.at/data/grafiken/540/standard/dreitage/{s}.png", {
+        "https://lawine.tirol.gv.at/data/grafiken/540/standard/dreitage/{z},{y},{z}.png", {
             subdomains : [], 
             attribution : "Datenquelle: '....'>..."
         }
@@ -98,4 +98,4 @@ L.marker(gehrenspitze, markeroptionen).addTo(markerGroup);
 L.marker(hafelekar, markeroptionen).addTo(markerGroup);
 
 let wetterstationHafele = L.marker(hafelekar).addTo(markerGroup);
-wetterstationHafele.bindPopup("<p>Wetterstation</p><a href=https://lawine.tirol.gv.at/data/grafiken/540/standard/dreitage/seegrube.png' style='width:400px' alt='website der wetterstation' />");
+wetterstationHafele.bindPopup("<p>Wetterinformationen</p><img style='width:400px' scr='js/leaflet/images/puitegg.png' alt='Bild mit Wetterinformationen'/>");
