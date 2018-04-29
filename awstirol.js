@@ -60,8 +60,8 @@ let myScale = L.control.scale({
 
 
 
-/*
-Option 1 - funktioniert !
+
+//Option 1 - funktioniert !
 
 const gehrenspitze = [47.387131, 11.133717];
 const hafelekar = [47.312079, 11.383623];
@@ -94,12 +94,12 @@ const tuxerjochschnee = [47.093149, 11.648053];
 const tuxerjochwind = [47.089717, 11.648987];
 const wandspitzeschnee = [47.121858, 11.661969];
 const wandspitzewind = [47.120752, 11.658062];
-*/
+
 const markeroptionen = {
     title : "Wetterstation",
     opacity : 0.8,
 };
-/*
+
 //myMap.fitBounds(markerGroup.getBounds());
 
 L.marker(gehrenspitze, markeroptionen).addTo(markerGroup)
@@ -196,8 +196,8 @@ L.marker(wandspitzewind, markeroptionen).addTo(markerGroup)
 L.marker(schlickeralm, markeroptionen).addTo(markerGroup)
     .bindPopup("<p><h3>Wetterstation Schlicker Alm (1645m) und Sennjoch(2230)</h3><ul><li>Aktuelle Temp. (°C): 5,0</li><li><a href='https://lawine.tirol.gv.at/data/grafiken/540/standard/dreitage/schlickeralm.png'/> </li> </ul></p><img style='width:400px'/>")
     .openPopup();
-*/
-//Option 2 - funktioniert noch nicht...
+/*
+Option 2 - funktioniert noch nicht...
 let awsdata = [
     {"lat":"[47.387131]","lng":"[11.133717]","name":"Gehrenspitze","temperatur":"0.6","datum":"2018-04-26T08:00:00+02:00","link":"https://lawine.tirol.gv.at/data/grafiken/540/standard/dreitage/puitegg.png"},
     {"lat":"47.312079","lng":"11.383623","name":"Hafelekar","temperatur":"1.6","datum":"2018-04-26T08:10:00+02:00","link":"https://lawine.tirol.gv.at/data/grafiken/540/standard/dreitage/seegrube.png"},
@@ -238,7 +238,7 @@ let awsdata = [
 
 
 L.marker(awsdata, markeroptionen).addTo(markerGroup);
-
+*/
 
 
 
