@@ -58,27 +58,6 @@ let myScale = L.control.scale({
 
 }).addTo(myMap);
 
-//Option 1 Json 
-
-/*let Wetterstationen; 
-function preload(){
-    Wetterstationen = loadJSON("awsdata.json");
-}
-L.Wetterstationen.addTo(markerGroup);
-
-
-
-L.geoJSON(data, {
-    style: function (feature) {
-        return {color: feature.properties.color};
-    }
-}).bindPopup(function (layer) {
-    return layer.feature.properties.description;
-}).addTo(map);
-*/
-
-
-
 
 
 
