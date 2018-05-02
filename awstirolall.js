@@ -1,6 +1,7 @@
 let myMap = L.map("mapdiv");
 //L.map spricht die leaflet bibliothek an und sagt wo im html die karte hin soll. mapdiv ist der link zu der stelle wo die karte hin soll
 //DOClink: http://leafletjs.com/reference-1.3.0.html#map-l-map
+const awsGroup = L.featureGroup();
 let myLayers = {
 
     osm : L.tileLayer ( // DOCLink: http://leafletjs.com/reference-1.3.0.html#tilelayer-l-tilelayer
@@ -54,6 +55,7 @@ let myMapControl = L.control.layers({ //DOCLink: http://leafletjs.com/reference-
     "Orthofoto 30cm" : myLayers.bmaporthofoto30cm,
 },{
     "bmapoverlay" : myLayers.bmapoverlay, // schrift kann in allen anderen Layern angezeigt werden
+    "Wetterstationen": awsGroup,
 },{
     collapsed : false, //DOCLink: http://leafletjs.com/reference-1.3.0.html#control-layers-collapsed
     //ich bin mir nicht sicher, ob ich die aufgabe richtig verstanden habe, aber jetzt ist das layer control direkt ausgeklappt..
@@ -80,3 +82,21 @@ let myScale = L.control.scale({ //DOCLink: http://leafletjs.com/reference-1.3.0.
     position : "bottomleft", //DOCLink: http://leafletjs.com/reference-1.3.0.html#control-scale-position
     updateWhenIdle : true, //DOCLink: http://leafletjs.com/reference-1.3.0.html#control-scale-updatewhenidle
 }).addTo(myMap);
+//im folgenden wird stationen.js angesprochen und einzelene Informatioen (zb. Temperatur im popup angezeigt)
+console.log ("Stationen: ", stationen); //zum überprüfen, ob die daten wirklich geladen werden.
+let geojson = L.geoJSON(stationen).addTo(awsGroup);
+geojson.bindPopup(function(layer) {
+    console.log("Layer for popup:", layer.feature.properties.name);
+    const props = layer.feature.properties;
+    const popupText = `<h1>${props.name}</h1>
+    <p>Temperatur: ${props.LT} °C</p>`;
+    const popupText2 = ""
+    return popupText;
+   
+}); 
+myMap.fitBounds(awsGroup.getBounds());
+
+
+
+//damit nicht überall der gleiche auf geht 
+

@@ -1,4 +1,5 @@
-{
+//eine variable erzeugt, damit die daten als js gültigt sind. 
+const stationen = {
     "features": [
       {
         "id": "72fc661e-b86f-8569-e4c8-9ad2ab8452ef",
