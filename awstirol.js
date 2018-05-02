@@ -19,11 +19,8 @@ let myLayers = {
             subdomains : ["maps", "maps1", /*" "maps2", "maps3",*/ "maps4"], 
             attribution : "Datenquelle: <a href='https://www.basemap.at'>basemap.at" 
         }
-    )/*
-    aws : L.tileLayer(
-        "https://lawine.tirol.gv.at/data/grafiken/540/standard/dreitage/{z},{y},{z}.png", {
-            subdomains : [], 
-            attribution : "Datenquelle: '....'>..."
+    )/*, 
+    Wetterstationen : L.geoJSON(awsdata.json)
         }
     )
 
@@ -36,9 +33,7 @@ myMap.addLayer(myLayers.geolandbasemap);
 
 
 let myMapControl = L.control.layers({ 
-  
     "Geolandbasemap" : myLayers.geolandbasemap,
- 
     "Orthofoto 30cm" : myLayers.bmaporthofoto30cm,
 },{
     "bmapoverlay" : myLayers.bmapoverlay, 
@@ -59,8 +54,24 @@ let myScale = L.control.scale({
 }).addTo(myMap);
 
 //Option 1 Json 
+/*
+loadJSON("/Users/Heuser/Documents/GitHub/jacobusmeow.github.io/awsdata.json", function(text){
+    var data = JSON.parse(text)
+    console.log(data); 
+});
 
-/*let Wetterstationen; 
+
+
+
+let myWetterstationen = L.geoJSON(awsdata, {
+    style: function (feature){
+        return {color : feature.properties.color};
+}
+    
+); 
+//myWetterstationen.addData(awsdata.json);
+L.marker(myWetterstationen).addTo(markerGroup)
+    .bindPopup(awsdata.json);
 function preload(){
     Wetterstationen = loadJSON("awsdata.json");
 }
@@ -121,104 +132,124 @@ const markeroptionen = {
     title : "Wetterstation",
     opacity : 0.8,
 };
+var klimastationen = [
+    {
+        "name": "gehrenspitze",
+        "temp": 0.6,
+        "date": 2018-04-26,
+    },
+    {
+        "name":"hafelekar",
+        "temp":1.6,
+        "date":2018-04-26, 
+    }
 
+];
+var output = "";
+for(var i = 0;i<klimastationen.length;i++){
+    output +="<ul><li>"+klimastationen[i].temp+"</li></ul>";
+}
+console.log(klimastationen.innerJavascript=output);
+//console.log(klimastationen[0].date);
+//var awsdata = new loadJSON("/Users/Heuser/Documents/GitHub/jacobusmeow.github.io/awsdata.json");
 //myMap.fitBounds(markerGroup.getBounds());
 
+    
+
 L.marker(gehrenspitze, markeroptionen).addTo(markerGroup)
-    .bindPopup("<p> <h3> Wetterinformationen Gehrenspitze </h3> </p><img style='width:200px' src='https://lawine.tirol.gv.at/data/grafiken/540/standard/dreitage/puitegg.png' alt= 'Bild mit Wetterinformationen'/> <ul><li></li></ul></P>")
-    .openPopup();
+    .bindPopup("<p> <h3> Wetterinformationen Gehrenspitze </h3> </p> <img style='width:200px' src='https://lawine.tirol.gv.at/data/grafiken/540/standard/dreitage/puitegg.png' alt= 'Bild mit Wetterinformationen'/> <script>klimastationen[].innerJavascript=output</script</P>", klimastationen.innerJavascript=output );
+
 L.marker(hafelekar, markeroptionen).addTo(markerGroup)
     .bindPopup("<p><h3>Wetterinformationen Hafelekar </h3> <img style='width:200px' src='https://lawine.tirol.gv.at/data/grafiken/540/standard/dreitage/seegrube.png' alt= 'Bild mit Wetterinformationen'/> <ul><li></li></ul></p>")
-    .openPopup();
+    //.setPopupContent(awsdata[O].datum)
 L.marker(hohemundepeak, markeroptionen).addTo(markerGroup)
-    .bindPopup("<p><h3>Wetterstation Hohemunde Gipfel</h3> <img style='width:200px' src='https://lawine.tirol.gv.at/data/grafiken/540/standard/woche/hohemunde.png' alt= 'Bild mit Wetterinformationen'/> <ul><li></li><li></li></ul></P>")
-    .openPopup();
-L.marker(hohemundewind, markeroptionen).addTo(markerGroup)
-    .bindPopup("<p><h3>Windmessstation Hohemunde</h3> <img style='width:200px' src='https://lawine.tirol.gv.at/data/grafiken/540/standard/woche/hohemunde.png' alt= 'Bild mit Wetterinformationen'/> <ul><li></li><li></li></ul></P>")
-    .openPopup();
+    .bindPopup("<p><h3>Wetterstation Hohemunde Gipfel</h3> <img style='width:200px' src='https://lawine.tirol.gv.at/data/grafiken/540/standard/woche/hohemunde.png' alt= 'Bild mit Wetterinformationen'/> <ul><li></li><li></li></ul></P>");
+
+    L.marker(hohemundewind, markeroptionen).addTo(markerGroup)
+    .bindPopup("<p><h3>Windmessstation Hohemunde</h3> <img style='width:200px' src='https://lawine.tirol.gv.at/data/grafiken/540/standard/woche/hohemunde.png' alt= 'Bild mit Wetterinformationen'/> <ul><li></li><li></li></ul></P>");
+    
 L.marker(nassereithwanning, markeroptionen).addTo(markerGroup)
-    .bindPopup("<p><h3>Wetterstation Nassereith, Wanning </h3> <img style='width:200px' src='https://lawine.tirol.gv.at/data/grafiken/540/standard/dreitage/nassereith.png' alt= 'Bild mit Wetterinformationen'/> <ul><li></li><li></li></ul></P>")
-    .openPopup();
+    .bindPopup("<p><h3>Wetterstation Nassereith, Wanning </h3> <img style='width:200px' src='https://lawine.tirol.gv.at/data/grafiken/540/standard/dreitage/nassereith.png' alt= 'Bild mit Wetterinformationen'/> <ul><li></li><li></li></ul></P>");
+
 L.marker(nassereithalm, markeroptionen).addTo(markerGroup)
-    .bindPopup("<p> <h3> Wetterstation Nassereith, Alm </h3> <img style='width:200px' src='https://lawine.tirol.gv.at/data/grafiken/540/standard/dreitage/nassereith.png' alt= 'Bild mit Wetterinformationen'/><ul><li></li><li></li></ul></P>")
-    .openPopup();
+    .bindPopup("<p> <h3> Wetterstation Nassereith, Alm </h3> <img style='width:200px' src='https://lawine.tirol.gv.at/data/grafiken/540/standard/dreitage/nassereith.png' alt= 'Bild mit Wetterinformationen'/><ul><li></li><li></li></ul></P>");
+
 L.marker(puitegg, markeroptionen).addTo(markerGroup)
-    .bindPopup("<p><h3>Wetterstation Puitegg</h3> <img style='width:200px' src='https://lawine.tirol.gv.at/data/grafiken/540/standard/dreitage/puitegg.png' alt= 'Bild mit Wetterinformationen'/> <ul><li></li></ul></P>")
-    .openPopup();
+    .bindPopup("<p><h3>Wetterstation Puitegg</h3> <img style='width:200px' src='https://lawine.tirol.gv.at/data/grafiken/540/standard/dreitage/puitegg.png' alt= 'Bild mit Wetterinformationen'/> <ul><li></li></ul></P>");
+    
 L.marker(rauthütte, markeroptionen).addTo(markerGroup)
-    .bindPopup("<p><h3>Wetterstation Rauthütte</h3> <img style='width:200px' src='https://lawine.tirol.gv.at/data/grafiken/540/standard/dreitage/rauthhuette.png' alt= 'Bild mit Wetterinformationen'/> <ul><li></li><li></li></ul></P>")
-    .openPopup();
+    .bindPopup("<p><h3>Wetterstation Rauthütte</h3> <img style='width:200px' src='https://lawine.tirol.gv.at/data/grafiken/540/standard/dreitage/rauthhuette.png' alt= 'Bild mit Wetterinformationen'/> <ul><li></li><li></li></ul></P>");
+    
 L.marker(rosshüttewind, markeroptionen).addTo(markerGroup)
-    .bindPopup("<p> <h3>Windmessstation Rosshütte</h3> <img style='width:200px' src='https://lawine.tirol.gv.at/data/grafiken/540/standard/dreitage/rosshuette.png' alt= 'Bild mit Wetterinformationen'/> <ul><li></li><li></li></ul></P>")
-    .openPopup();
+    .bindPopup("<p> <h3>Windmessstation Rosshütte</h3> <img style='width:200px' src='https://lawine.tirol.gv.at/data/grafiken/540/standard/dreitage/rosshuette.png' alt= 'Bild mit Wetterinformationen'/> <ul><li></li><li></li></ul></P>");
+   
 L.marker(seegrube, markeroptionen).addTo(markerGroup)
-    .bindPopup("<p> <h3> Wetterstation Seegrube</h3> <img style='width:200px' src='https://lawine.tirol.gv.at/data/grafiken/540/standard/dreitage/seegrube.png' alt= 'Bild mit Wetterinformationen'/><ul><li></li><li></li></ul></p>")
-    .openPopup();
+    .bindPopup("<p> <h3> Wetterstation Seegrube</h3> <img style='width:200px' src='https://lawine.tirol.gv.at/data/grafiken/540/standard/dreitage/seegrube.png' alt= 'Bild mit Wetterinformationen'/><ul><li></li><li></li></ul></p>");
+    
 L.marker(dalfazkamm, markeroptionen).addTo(markerGroup)
-    .bindPopup("<p> <h3> Wetterstation Dalfazkamm </h3> <img style='width:200px' src='https://lawine.tirol.gv.at/data/grafiken/540/standard/dreitage/erfurterhuette.png' alt= 'Bild mit Wetterinformationen'/> <ul><li></li><li></li></ul></P>")
-    .openPopup();
+    .bindPopup("<p> <h3> Wetterstation Dalfazkamm </h3> <img style='width:200px' src='https://lawine.tirol.gv.at/data/grafiken/540/standard/dreitage/erfurterhuette.png' alt= 'Bild mit Wetterinformationen'/> <ul><li></li><li></li></ul></P>");
+    
 L.marker(erfurterhütte, markeroptionen).addTo(markerGroup)
-    .bindPopup("<p> <h3> Wetterstation Erfurter Hütte </h3> <img style='width:200px' src='https://lawine.tirol.gv.at/data/grafiken/540/standard/dreitage/erfurterhuette.png' alt= 'Bild mit Wetterinformationen'/> <ul><li></li><li></li></ul></P>")
-    .openPopup();
+    .bindPopup("<p> <h3> Wetterstation Erfurter Hütte </h3> <img style='width:200px' src='https://lawine.tirol.gv.at/data/grafiken/540/standard/dreitage/erfurterhuette.png' alt= 'Bild mit Wetterinformationen'/> <ul><li></li><li></li></ul></P>");
+    
 L.marker(agetwoad, markeroptionen).addTo(markerGroup)
-    .bindPopup("<p> <h3> Wetterstation Agetwoad </h3> <img style='width:200px' src='https://lawine.tirol.gv.at/data/grafiken/540/standard/dreitage/agetwoad.png' alt= 'Bild mit Wetterinformationen'/> <ul><li></li><li></li></ul></P>")
-    .openPopup();
+    .bindPopup("<p> <h3> Wetterstation Agetwoad </h3> <img style='width:200px' src='https://lawine.tirol.gv.at/data/grafiken/540/standard/dreitage/agetwoad.png' alt= 'Bild mit Wetterinformationen'/> <ul><li></li><li></li></ul></P>");
+   
 L.marker(brgrießkogelschnee, markeroptionen).addTo(markerGroup)
-    .bindPopup("<p> <h3> Schneemessstation Breiter Grießgkogel </h3> <img style='width:200px' src='https://lawine.tirol.gv.at/data/grafiken/540/standard/dreitage/breiter_grieskogel.png' alt= 'Bild mit Wetterinformationen'/> <ul><li></li><li></li></ul></P>")
-    .openPopup();
+    .bindPopup("<p> <h3> Schneemessstation Breiter Grießgkogel </h3> <img style='width:200px' src='https://lawine.tirol.gv.at/data/grafiken/540/standard/dreitage/breiter_grieskogel.png' alt= 'Bild mit Wetterinformationen'/> <ul><li></li><li></li></ul></P>");
+    
 L.marker(brgrießkogelwind, markeroptionen).addTo(markerGroup)
-    .bindPopup("<p> <h3> Windmessstation Breiter Grießkogel </h3> <img style='width:200px' src='https://lawine.tirol.gv.at/data/grafiken/540/standard/dreitage/breiter_grieskogel.png' alt= 'Bild mit Wetterinformationen'/> <ul><li></li><li></li></ul></P>")
-    .openPopup();
+    .bindPopup("<p> <h3> Windmessstation Breiter Grießkogel </h3> <img style='width:200px' src='https://lawine.tirol.gv.at/data/grafiken/540/standard/dreitage/breiter_grieskogel.png' alt= 'Bild mit Wetterinformationen'/> <ul><li></li><li></li></ul></P>");
+  
 L.marker(falkaunsalpe, markeroptionen).addTo(markerGroup)
-    .bindPopup("<p> <h3> Wetterstation Falkaunsalpe </h3> <img style='width:200px' src='https://lawine.tirol.gv.at/data/grafiken/540/standard/dreitage/falkaunsalpe.png' alt= 'Bild mit Wetterinformationen'/> <ul><li></li><li></li></ul></P>")
-    .openPopup();
+    .bindPopup("<p> <h3> Wetterstation Falkaunsalpe </h3> <img style='width:200px' src='https://lawine.tirol.gv.at/data/grafiken/540/standard/dreitage/falkaunsalpe.png' alt= 'Bild mit Wetterinformationen'/> <ul><li></li><li></li></ul></P>");
+   
 L.marker(fshüttehs, markeroptionen).addTo(markerGroup)
-    .bindPopup("<p> <h3> Wetterstation Franz-Senn-Hütte, Horntaler Spitzl </h3> <img style='width:200px' src='https://lawine.tirol.gv.at/data/grafiken/540/standard/dreitage/franz_senn_huette.png' alt= 'Bild mit Wetterinformationen'/> <ul><li></li><li></li></ul></P>")
-    .openPopup();
+    .bindPopup("<p> <h3> Wetterstation Franz-Senn-Hütte, Horntaler Spitzl </h3> <img style='width:200px' src='https://lawine.tirol.gv.at/data/grafiken/540/standard/dreitage/franz_senn_huette.png' alt= 'Bild mit Wetterinformationen'/> <ul><li></li><li></li></ul></P>");
+    
 L.marker(fshütteklhorntal, markeroptionen).addTo(markerGroup)
-    .bindPopup("<p> <h3> Wetterstation Franz-Senn-Hütte, Horntal </h3> <img style='width:200px' src='https://lawine.tirol.gv.at/data/grafiken/540/standard/dreitage/franz_senn_huette.png' alt= 'Bild mit Wetterinformationen'/> <ul><li></li><li></li></ul></P>")
-    .openPopup();
+    .bindPopup("<p> <h3> Wetterstation Franz-Senn-Hütte, Horntal </h3> <img style='width:200px' src='https://lawine.tirol.gv.at/data/grafiken/540/standard/dreitage/franz_senn_huette.png' alt= 'Bild mit Wetterinformationen'/> <ul><li></li><li></li></ul></P>");
+   
 L.marker(lampsenspitzeschnee, markeroptionen).addTo(markerGroup)
-    .bindPopup("<p> <h3> Schneemessstation Lampsenspitze </h3> <img style='width:200px' src='https://lawine.tirol.gv.at/data/grafiken/540/standard/dreitage/lampsenspitze.png' alt= 'Bild mit Wetterinformationen'/> <ul><li></li><li></li></ul></P>")
-    .openPopup();
+    .bindPopup("<p> <h3> Schneemessstation Lampsenspitze </h3> <img style='width:200px' src='https://lawine.tirol.gv.at/data/grafiken/540/standard/dreitage/lampsenspitze.png' alt= 'Bild mit Wetterinformationen'/> <ul><li></li><li></li></ul></P>");
+   
 L.marker(lampsenspitzewind, markeroptionen).addTo(markerGroup)
-    .bindPopup("<p> <h3> Windmessstationstation Lampsenspitze </h3> <img style='width:200px' src='https://lawine.tirol.gv.at/data/grafiken/540/standard/dreitage/lampsenspitze.png' alt= 'Bild mit Wetterinformationen'/> <ul><li></li><li></li></ul></P>")
-    .openPopup();
+    .bindPopup("<p> <h3> Windmessstationstation Lampsenspitze </h3> <img style='width:200px' src='https://lawine.tirol.gv.at/data/grafiken/540/standard/dreitage/lampsenspitze.png' alt= 'Bild mit Wetterinformationen'/> <ul><li></li><li></li></ul></P>");
+   
 L.marker(roterschrofen, markeroptionen).addTo(markerGroup)
-    .bindPopup("<p><h3>Wetterstation Roter Schrofen </h3> <img style='width:200px' src='https://lawine.tirol.gv.at/data/grafiken/540/standard/dreitage/falkaunsalpe.png' alt= 'Bild mit Wetterinformationen'/> <ul><li></li><li></li></ul></P>")
-    .openPopup();
+    .bindPopup("<p><h3>Wetterstation Roter Schrofen </h3> <img style='width:200px' src='https://lawine.tirol.gv.at/data/grafiken/540/standard/dreitage/falkaunsalpe.png' alt= 'Bild mit Wetterinformationen'/> <ul><li></li><li></li></ul></P>");
+  
 L.marker(seirlöcherkogel, markeroptionen).addTo(markerGroup)
-    .bindPopup("<p><h3>Wetterstation Seirlöcher Kogel </h3> <img style='width:200px' src='https://lawine.tirol.gv.at/data/grafiken/540/standard/dreitage/seirloecherkogel.png' alt= 'Bild mit Wetterinformationen'/> <ul><li></li><li></li></ul></P>")
-    .openPopup();
+    .bindPopup("<p><h3>Wetterstation Seirlöcher Kogel </h3> <img style='width:200px' src='https://lawine.tirol.gv.at/data/grafiken/540/standard/dreitage/seirloecherkogel.png' alt= 'Bild mit Wetterinformationen'/> <ul><li></li><li></li></ul></P>");
+   
 L.marker(lämmerbichlalm, markeroptionen).addTo(markerGroup)
-    .bindPopup("<p><h3>Wetterstation Lämmerbichl Alm </h3> <img style='width:200px' src='https://lawine.tirol.gv.at/data/grafiken/540/standard/dreitage/laemmerbichlalm.png' alt= 'Bild mit Wetterinformationen'/> <ul><li></li><li></li></ul></P>")
-    .openPopup();
+    .bindPopup("<p><h3>Wetterstation Lämmerbichl Alm </h3> <img style='width:200px' src='https://lawine.tirol.gv.at/data/grafiken/540/standard/dreitage/laemmerbichlalm.png' alt= 'Bild mit Wetterinformationen'/> <ul><li></li><li></li></ul></P>");
+  
 L.marker(rastkogelwind, markeroptionen).addTo(markerGroup)
-    .bindPopup("<p><h3>Windmessstation Rastkogel </h3> <img style='width:200px' src='https://lawine.tirol.gv.at/data/grafiken/540/standard/dreitage/laemmerbichlalm.png' alt= 'Bild mit Wetterinformationen'/> <ul><li></li><li></li></ul></P>")
-    .openPopup();
+    .bindPopup("<p><h3>Windmessstation Rastkogel </h3> <img style='width:200px' src='https://lawine.tirol.gv.at/data/grafiken/540/standard/dreitage/laemmerbichlalm.png' alt= 'Bild mit Wetterinformationen'/> <ul><li></li><li></li></ul></P>");
+    
 L.marker(sonntagsköpfl, markeroptionen).addTo(markerGroup)
-    .bindPopup("<p>Wetterstation Sonntagsköpfl <img style='width:200px' src='https://lawine.tirol.gv.at/data/grafiken/540/standard/dreitage/sonntagskoepfl.png' alt= 'Bild mit Wetterinformationen'/> <ul><li></li><li></li></ul></P>")
-    .openPopup();
+    .bindPopup("<p>Wetterstation Sonntagsköpfl <img style='width:200px' src='https://lawine.tirol.gv.at/data/grafiken/540/standard/dreitage/sonntagskoepfl.png' alt= 'Bild mit Wetterinformationen'/> <ul><li></li><li></li></ul></P>");
+   
 L.marker(sonntagsköpflwind, markeroptionen).addTo(markerGroup)
-    .bindPopup("<p><h3>Windmessstation Sonntagsköpfl </h3> <img style='width:200px' src='https://lawine.tirol.gv.at/data/grafiken/540/standard/dreitage/sonntagskoepfl.png' alt= 'Bild mit Wetterinformationen'/> <ul><li></li><li></li></ul></P>")
-    .openPopup();
+    .bindPopup("<p><h3>Windmessstation Sonntagsköpfl </h3> <img style='width:200px' src='https://lawine.tirol.gv.at/data/grafiken/540/standard/dreitage/sonntagskoepfl.png' alt= 'Bild mit Wetterinformationen'/> <ul><li></li><li></li></ul></P>");
+    
 L.marker(tuxerjochschnee, markeroptionen).addTo(markerGroup)
-    .bindPopup("<p><h3>Schneemessstation Tuxer Joch </h3><img style='width:200px' src='https://lawine.tirol.gv.at/data/grafiken/540/standard/dreitage/tuxerjoch.png' alt= 'Bild mit Wetterinformationen'/> <ul><li></li><li></li></ul></P>")
-    .openPopup();
+    .bindPopup("<p><h3>Schneemessstation Tuxer Joch </h3><img style='width:200px' src='https://lawine.tirol.gv.at/data/grafiken/540/standard/dreitage/tuxerjoch.png' alt= 'Bild mit Wetterinformationen'/> <ul><li></li><li></li></ul></P>");
+  
 L.marker(tuxerjochwind, markeroptionen).addTo(markerGroup)
-    .bindPopup("<p><h3>Windmessstation Tuxer Joch </h3> <img style='width:200px' src='https://lawine.tirol.gv.at/data/grafiken/540/standard/dreitage/tuxerjoch.png' alt= 'Bild mit Wetterinformationen'/> <ul><li></li><li></li></ul></P>")
-    .openPopup();
+    .bindPopup("<p><h3>Windmessstation Tuxer Joch </h3> <img style='width:200px' src='https://lawine.tirol.gv.at/data/grafiken/540/standard/dreitage/tuxerjoch.png' alt= 'Bild mit Wetterinformationen'/> <ul><li></li><li></li></ul></P>");
+  
 L.marker(wandspitzeschnee, markeroptionen).addTo(markerGroup)
-    .bindPopup("<p><h3>Schneemessstation Wandspitze </h3> <img style='width:200px' src='https://lawine.tirol.gv.at/data/grafiken/540/standard/dreitage/wandspitze.png' alt= 'Bild mit Wetterinformationen'/> <ul><li></li><li></li></ul></P>")
-    .openPopup();
+    .bindPopup("<p><h3>Schneemessstation Wandspitze </h3> <img style='width:200px' src='https://lawine.tirol.gv.at/data/grafiken/540/standard/dreitage/wandspitze.png' alt= 'Bild mit Wetterinformationen'/> <ul><li></li><li></li></ul></P>");
+   
 L.marker(wandspitzewind, markeroptionen).addTo(markerGroup)
-    .bindPopup("<p><h3>Windmessstation Wandspitze </h3> <img style='width:200px' src='https://lawine.tirol.gv.at/data/grafiken/540/standard/dreitage/wandspitze.png' alt= 'Bild mit Wetterinformationen'/> <ul><li></li><li></li><ul></P>")
-    .openPopup();
+    .bindPopup("<p><h3>Windmessstation Wandspitze </h3> <img style='width:200px' src='https://lawine.tirol.gv.at/data/grafiken/540/standard/dreitage/wandspitze.png' alt= 'Bild mit Wetterinformationen'/> <ul><li></li><li></li><ul></P>");
+   
 
 L.marker(schlickeralm, markeroptionen).addTo(markerGroup)
-    .bindPopup("<p><h3>Wetterstation Schlicker Alm (1645m) und Sennjoch(2230)</h3> <img style='width:200px' src='https://lawine.tirol.gv.at/data/grafiken/540/standard/dreitage/schlickeralm.png' alt= 'Bild mit Wetterinformationen'/><ul><li>Aktuelle Temp. (°C): 5,0</li><li><a href='https://lawine.tirol.gv.at/data/grafiken/540/standard/dreitage/schlickeralm.png'/> </li> </ul></p><img style='width:400px'/>")
-    .openPopup();
-
+    .bindPopup("<p><h3>Wetterstation Schlicker Alm (1645m) und Sennjoch(2230)</h3> <img style='width:200px' src='https://lawine.tirol.gv.at/data/grafiken/540/standard/dreitage/schlickeralm.png' alt= 'Bild mit Wetterinformationen'/><ul><li>Aktuelle Temp. (°C): 5,0</li><li><a href='https://lawine.tirol.gv.at/data/grafiken/540/standard/dreitage/schlickeralm.png'/> </li> </ul></p><img style='width:400px'/>");
+  
 
 
 
