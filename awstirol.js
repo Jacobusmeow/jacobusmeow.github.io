@@ -194,7 +194,7 @@ let awsdata = [
         
 
 L.marker(gehrenspitze, markeroptionen).addTo(markerGroup)
-    .bindPopup("<p> <h3> Wetterinformationen Gehrenspitze </h3> </p> <img style='width:200px' src='https://lawine.tirol.gv.at/data/grafiken/540/standard/dreitage/puitegg.png' alt= 'Bild mit Wetterinformationen'/> <script>klimastationen[].innerJavascript=output</script</P>", klimastationen.innerJavascript=output );
+    .bindPopup("<p> <h3> Wetterinformationen Gehrenspitze </h3> </p> <img style='width:200px' src='https://lawine.tirol.gv.at/data/grafiken/540/standard/dreitage/puitegg.png' alt= 'Bild mit Wetterinformationen'/> <script>klimastationen[].innerJavascript=output</script</P>", /*klimastationen.innerJavascript=output*/);
 
 L.marker(hafelekar, markeroptionen).addTo(markerGroup)
     .bindPopup("<p><h3>Wetterinformationen Hafelekar </h3> <img style='width:200px' src='https://lawine.tirol.gv.at/data/grafiken/540/standard/dreitage/seegrube.png' alt= 'Bild mit Wetterinformationen'/> <ul><li>Temperatur: 1.6°C</li><li>Datum: 2018-04-26 </li></ul></p>")
