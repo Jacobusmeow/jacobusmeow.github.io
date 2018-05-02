@@ -157,6 +157,20 @@ console.log(klimastationen[0].temp);
 //console.log(klimastationen[0].date);
 //var awsdata = new loadJSON("/Users/Heuser/Documents/GitHub/jacobusmeow.github.io/awsdata.json");
 //myMap.fitBounds(markerGroup.getBounds());
+/*
+gute Lösung: 
+
+for (let i=0, i<klimastationen.length;i++){
+    let wetterstation = awsdata[i];
+    L.marker([wetterstation.lat, wetterstation.lng], markerOption)
+ 
+}
+
+
+
+
+
+*/ 
 
 let awsdata = [
     {"lat":"47.387131","lng":"11.133717","name":"Gehrenspitze","temperatur":"0.6","datum":"2018-04-26T08:00:00+02:00","link":"https://lawine.tirol.gv.at/data/grafiken/540/standard/dreitage/puitegg.png"},
