@@ -43,9 +43,9 @@ async function addGeojson(url){
     console.log("url wird geladen", url);
     const response= await fetch(url);  
     console.log("Response: ", response);
-    const bikeStation = await response.json(); 
-    console.log("GEOJson: ", bikeStation);
-    const geojson = L.geoJSON(bikeStation,{
+    const bikedata = await response.json(); 
+    console.log("GEOJson: ", bikedata);
+    const geojson = L.geoJSON(bikedata,{
         /*style: function(feature){
             return {color: "#ff0000"};
         },*/
