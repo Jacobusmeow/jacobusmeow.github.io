@@ -1,6 +1,6 @@
 let myMap = L.map("mapdiv");
 let markerGroup = L.featureGroup();
-const bikeStation = L.featureGroup();
+const sehenwurdigkeiten = L.featureGroup();
 let myLayers = {
     geolandbasemap : L.tileLayer (
         "https://{s}.wien.gv.at/basemap/geolandbasemap/normal/google3857/{z}/{y}/{x}.png", {
@@ -33,19 +33,19 @@ let myMapControl = L.control.layers({
     "Orthofoto" : myLayers.bmaporthofoto30cm,
     },{
         "Beschriftung" : myLayers.bmapoverlay,
-        "Citybike Stationen" : bikeStation,
+        "Sehenswürdigkeiten" : sehenwurdigkeiten,
     });
 myMap.addControl(myMapControl);
 myMap.setView([48.226653, 16.378609], 11);
 
-const url = "https://data.wien.gv.at/daten/geo?service=WFS&request=GetFeature&version=1.1.0&typeName=ogdwien:CITYBIKEOGD&srsName=EPSG:4326&outputFormat=json";
+const url = "https://data.wien.gv.at/daten/geo?service=WFS&request=GetFeature&version=1.1.0&typeName=ogdwien:SEHENSWUERDIGOGD&srsName=EPSG:4326&outputFormat=json";
 async function addGeojson(url){
     console.log("url wird geladen", url);
     const response= await fetch(url);  
     console.log("Response: ", response);
-    const bikedata = await response.json(); 
-    console.log("GEOJson: ", bikedata);
-    const geojson = L.geoJSON(bikedata,{
+    const sightdata = await response.json(); 
+    console.log("GEOJson: ", sightdata);
+    const geojson = L.geoJSON(sightdata,{
         /*style: function(feature){
             return {color: "#ff0000"};
         },*/
@@ -58,27 +58,6 @@ async function addGeojson(url){
         }
     }
     );
-    bikeStation.addLayer(geojson);
+    sehenwurdigkeiten.addLayer(geojson);
 }
-bikeStation.bindPopup(function(layer) {
-    console.log("Layer for Popup:", totalFeatures.STATION);
-    const props = totalFeatures.STATION;
-    const popupText = `"<h3>Citybike Leihstation</h3>"<p>${probs}`;
-    return popupText;
-   
-}); 
-
-
-
-
-
 addGeojson(url);
-
-
-
-
-    //console.log("Layer for popup:", Feature.type.name.properties);
-    //const props = features.coordinates;
-/*`<h1>${props.coordinates}</h1>*/
-    //<p>Beschreibung: ${props.coordinates}`;
-    //const popupText2 = ""
