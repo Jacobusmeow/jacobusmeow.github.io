@@ -49,30 +49,21 @@ async function addGeojson(url){
     const bikedata = await response.json(); //was bedeutet await?
     console.log ("GEOJson: ", bikedata);
     const geojson = L.geoJSON(bikedata,{
-        style: function(feature){
-            return {color: "#ff0000"};
-        },
         pointToLayer: function(geoJsonPoint, latlng) {//icon der marker Points ändern: 
-            return L.marker(latlng,{
-                icon: L.icon({
-                    iconUrl: 'icons/bike.png',
-                })
+            return L.marker(latlng,{icon: L.icon({
+                iconUrl: 'icons/bike.png',
+            })
             });
         }
-    }
-    );
+    }).addTo(bikeStation);
     bikeStation.addLayer(geojson);
+    geojson.bindPopup(function(layer){
+      const props=layer.feature.properties;
+    const PopupText=`<h4>${props.STATION}</h4>`;
+    return PopupText;  
+    });
 }
-
-
-
-
-/*async function addGeojson(url){
-    console.log("url wird geladen", url);
-    const response= await fetch(url);  
-    console.log("Response: ", response);
-    const bikedata = await response.json(); 
-    console.log("geoJSON: ", bikedata);
+/*
 
     const geojson = L.geoJSON(bikedata,{
         style: function(feature){
