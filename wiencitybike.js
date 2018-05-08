@@ -1,5 +1,5 @@
 let myMap = L.map("mapdiv");
-let markerGroup = L.featureGroup();
+//let markerGroup = L.featureGroup();
 const bikeStation = L.featureGroup();
 let myLayers = {
     geolandbasemap : L.tileLayer (
@@ -22,12 +22,14 @@ let myLayers = {
     )
 };
 myMap.addLayer(myLayers.geolandbasemap);
+
 let myScale = L.control.scale({
     position : "bottomleft", 
     metric : true, 
     imperial : false, 
     maxWidth : 200
 });
+myScale.addTo(myMap);
 let myMapControl = L.control.layers({
     "Basemap" : myLayers.geolandbasemap,
     "Orthofoto" : myLayers.bmaporthofoto30cm,
@@ -39,20 +41,21 @@ myMap.addControl(myMapControl);
 myMap.setView([48.226653, 16.378609], 11);
 
 const url = "https://data.wien.gv.at/daten/geo?service=WFS&request=GetFeature&version=1.1.0&typeName=ogdwien:CITYBIKEOGD&srsName=EPSG:4326&outputFormat=json";
+
 async function addGeojson(url){
     console.log("url wird geladen", url);
-    const response= await fetch(url);  
+    const response= await fetch(url);  //was bedeutet fetch??
     console.log("Response: ", response);
-    const bikedata = await response.json(); 
-    console.log("GEOJson: ", bikedata);
+    const bikedata = await response.json(); //was bedeutet await?
+    console.log ("GEOJson: ", bikedata);
     const geojson = L.geoJSON(bikedata,{
-        /*style: function(feature){
+        style: function(feature){
             return {color: "#ff0000"};
-        },*/
-        pointToLayer: function(geoJsonPoint, latlng) { 
+        },
+        pointToLayer: function(geoJsonPoint, latlng) {//icon der marker Points ändern: 
             return L.marker(latlng,{
                 icon: L.icon({
-                    iconUrl: "icons/bike.png"
+                    iconUrl: 'icons/bike.png',
                 })
             });
         }
@@ -60,25 +63,42 @@ async function addGeojson(url){
     );
     bikeStation.addLayer(geojson);
 }
-bikeStation.bindPopup(function(layer) {
-    console.log("Layer for Popup:", totalFeatures.STATION);
-    const props = totalFeatures.STATION;
-    const popupText = `"<h3>Citybike Leihstation</h3>"<p>${probs}`;
-    return popupText;
-   
-}); 
 
 
 
+
+/*async function addGeojson(url){
+    console.log("url wird geladen", url);
+    const response= await fetch(url);  
+    console.log("Response: ", response);
+    const bikedata = await response.json(); 
+    console.log("geoJSON: ", bikedata);
+
+    const geojson = L.geoJSON(bikedata,{
+        style: function(feature){
+            return{color: "#ff0000"};
+        },
+        pointToLayer: function(geoJsonPoint, latlng) { 
+            return L.marker(latlng,{icon: L.icon({
+                    iconUrl: "icons/bike.png",
+                })
+            })
+        }
+    })
+        
+        
+        .bindPopup(function(layer){ 
+            const props = layer.feature.properties;
+            const popupText = `<h3> ${props.STATION}</h3><p>Adresse:${props.BEZIRK}</p>`;
+            return popupText;
+            
+            })
+        }.addTo(bikeStation)
+    //bikeStation.addLayer(geojson); 
+    )}*/
 
 
 addGeojson(url);
 
 
 
-
-    //console.log("Layer for popup:", Feature.type.name.properties);
-    //const props = features.coordinates;
-/*`<h1>${props.coordinates}</h1>*/
-    //<p>Beschreibung: ${props.coordinates}`;
-    //const popupText2 = ""
