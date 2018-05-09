@@ -67,6 +67,10 @@ async function addGeojson(url){
     return PopupText;  
     });
     const hash = new L.Hash(myMap);
+    myMap.addControl( new L.Control.Search({
+        layer: markers,
+        propertyName: "STATION"
+    }) );
 }
 /*
 
