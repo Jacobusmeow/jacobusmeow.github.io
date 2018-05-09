@@ -1,6 +1,10 @@
 let myMap = L.map("mapdiv");
-//let markerGroup = L.featureGroup();
-const bikeStation = L.featureGroup();
+
+
+let markers = L.markerClusterGroup();
+myMap.addLayer(markers);
+
+//const markers = L.featureGroup();
 let myLayers = {
     geolandbasemap : L.tileLayer (
         "https://{s}.wien.gv.at/basemap/geolandbasemap/normal/google3857/{z}/{y}/{x}.png", {
@@ -35,7 +39,7 @@ let myMapControl = L.control.layers({
     "Orthofoto" : myLayers.bmaporthofoto30cm,
     },{
         "Beschriftung" : myLayers.bmapoverlay,
-        "Citybike Stationen" : bikeStation,
+        "Citybike Stationen" : markers,
     });
 myMap.addControl(myMapControl);
 myMap.setView([48.226653, 16.378609], 11);
@@ -55,13 +59,14 @@ async function addGeojson(url){
             })
             });
         }
-    }).addTo(bikeStation);
-    bikeStation.addLayer(geojson);
+    }).addTo(markers);
+    markers.addLayer(geojson);
     geojson.bindPopup(function(layer){
       const props=layer.feature.properties;
     const PopupText=`<h4>${props.STATION}</h4>`;
     return PopupText;  
     });
+    const hash = new L.Hash(myMap);
 }
 /*
 

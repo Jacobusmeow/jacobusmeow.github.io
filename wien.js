@@ -80,7 +80,7 @@ let myScale = L.control.scale({ //DOCLink: http://leafletjs.com/reference-1.3.0.
 //daten werden von dem server herunter geladen:
 async function addGeojson(url){
     console.log("url wird geladen", url);
-    const response= await fetch(url);  //was bedeutet fetch??
+    const response= await fetch(url);  //fetch: url laden und warten bis alles geladen ist. wird in response gespeiert. im nächsten schritt werden die daten im json format gespeichert. 
     console.log("Response: ", response);
     const wiendata = await response.json(); //was bedeutet await?
     console.log ("GEOJson: ", wiendata);
@@ -88,7 +88,7 @@ async function addGeojson(url){
         style: function(feature){
             return {color: "#ff0000"};
         },
-        pointToLayer: function(geoJsonPoint, latlng) {//icon der marker Points ändern: 
+        pointToLayer: function(geoJsonPoint, latlng) {//point to layer: was wird aus dem punkt gemacht? in der funktion wird ein neuer layer marker erstellt. 
             return L.marker(latlng,{
                 icon: L.icon({
                     iconUrl: 'icons/sights.png',
