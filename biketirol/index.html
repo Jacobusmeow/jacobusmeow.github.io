@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Bike Trail Tirol - Etappe 11: Koessen - Kitzbuehel</title><!-- TODO: Etappentitel einfügen -->
+
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+    
+    <link rel="stylesheet" href="../js/leaflet/leaflet.css" />
+    <script src="../js/leaflet/leaflet.js"></script>
+
+    <link rel="stylesheet" href="styles.css" />
+    <script defer src="biketirol.js"></script>
+
+</head>
+
+<body>
+    <div id="header">
+        <h2 class="white">Bike Trail Tirol</h2>
+        <h3 class="white">Griass enk die Wadeln!</h3>
+    </div>
+
+    <div class="author">
+        <img src="images/user.jpg" alt="Ihr Reiseleiter" /><!-- TODO: anpassen -->
+        <p class="gray">
+            <a href="mailto:jacob.heuser@student.uibk.ac.at">Jacob Heuser</a> -<!-- TODO: anpassen -->
+            <a href="https://jacobusmeow.github.io/biketirol/index.html">https://jacobusmeow.github.io/biketirol/</a><!-- TODO: anpassen -->
+        </p>
+    </div>
+
+    <hr />
+
+    
+    <div class="article">
+        <h1>Etappe 11 von Koessen nach Kitzbuehel</h1><!-- TODO: anpassen -->
+
+        <p>Die rund 56 Kilometer lange Mountainbikestrecke startet in Kössen und führt über den Klausenberg zur Hasenauer Alm und durch Erpfendorf, entlang der Großache nach St. Johann in Tirol. 1.900 Höhenmeter sind auf dieser Tour zu überwinden, wobei den größten Anstieg jener knapp unter den Gipfel des 1.996 Meter hohen Kitzbüheler Horns darstellt. Diese Anstrengung wird aber mit einer herrlichen Aussicht auf die Kitzbüheler Alpen, zum Großvenediger, zum Großglockner und zu den Zillertaler Alpen belohnt. <!--https://www.tirol.at/reisefuehrer/sport/radfahren/biketouren?form=biketours&theme[]=1--></p>
+
+        TODO: Karte mit Radroute und Marker beim Start- und Endpunkt. Hintergrundkarte OSM, basemap.at und Elektronische Karte Tirol (Sommer, Winter, Orthophoto jeweils mit Beschriftung) - siehe biketirol.js
+        <div id="map"></div>
+
+        <h2>Streckenbeschreibung</h2>
+        <p>Vom Etappenstart beim Kreisverkehr radelt man zunächst Richtung Hauptplatz und weiter auf der Gemeindestraße zur Tiroler Ache, vorbei am Outdoorcenter Le Pirat. Kurz danach wird der Fluss und die Straße überquert. Es folgt ein kurzer Anstieg bis man wiederum die Straße nach Kitzbühel erreicht und auf dieser bis zur Abzweigung „248 Klausenberg-Eggenalm“ bleibt. Nun folgt ein Anstieg bis auf etwa 1000m Seehöhe. Dabei radelt man immer in südlicher Richtung über dem Tal entlang bis zur Forststraßengabelung mit der Beschilderung „249 Straubingerhaus-Eggenalm“. Hier zweigt man rechts ab und es geht die nächsten 5 Kilometer abwärts Richtung Erpfendorf. Auf dem Radweg Nr. 18 radelt man nun immer entlang der Tiroler Ache, vorbei an Erpfendorf bis zur Abzweigung bei der neuen Brücke nach Kirchdorf. Weiter orientiert man sich an den grünen Radwegweisern mit dem Bike Trail Tirol Logo nach St. Johann in Tirol und in Folge nach Fieberbrunn (18). Im Weiler Mühlbach auf halber Strecke zwischen St. Johann in Tirol und Fieberbrunn verlässt man den Radweg und radelt zur Talstraße. Auf dieser geht es etwa 500m talauswärts bis zur Abzweigung auf das Kitzbüheler Horn (254), 3h ab Kössen. Nun folgt der Anstieg bis zur Hornköpflhütte (ca. 3h). Kurz unterhalb der Hütte zweigt ein Pfad links vom Weg ab, auf dem man das Rad 500 Meter bis zur nächsten Forststraße schieben muss. Etwa 2 Kilometer fährt man nun durch das Schigebiet und stößt dann auf die asphaltierte Bergstraße aufs Kitzbüheler Horn. Erst kurz vor dem Talboden verlässt man die Straße und radelt nach einer kleinen Bachbrücke geradeaus auf dem Radweg ins Zentrum von Kitzbühel (1,5h ab Hornköpflhütte). <!--https://www.tirol.at/reisefuehrer/sport/radfahren/biketouren?form=biketours&theme[]=1--></p>
+
+        <h3>Weitere Informationen</h3>
+       
+        <ul>
+            <li><a href="https://www.tirol.at/reisefuehrer/sport/radfahren/biketouren/a-bike-trail-tirol-koessen-kitzbuehel">Etappenbeschreibung bei tirol.at</a></li>
+            <li><a href="https://www.tirol.at/orte/a-koessen">Koessen, Start der Etappe</a></li>
+            <li><a href="https://www.tirol.at/regionen/a-kitzbuehel">Kitzbühel</a></li>
+            <li><a href="https://www.tirol.at/orte/a-st-johann-in-tirol">St. Johann in Tirol</a></li>
+        </ul>
+    </div>
+
+    <hr />
+
+    <!-- TODO: Links anpassen zu den benachbarten Etappen - siehe OLAT Tabelle ... -->
+    <div id="footer" class="gray">
+        <a class="back" href="../10/index.html">
+            <i class="fas fa-arrow-alt-circle-left"></i> vorhergehender Stop</a>
+        <a class="next" href="../12/index.html">nächster Stop
+            <i class="fas fa-arrow-alt-circle-right"></i>
+        </a>
+    </div>
+
+</body>
+</html>
