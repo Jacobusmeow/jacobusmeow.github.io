@@ -59,6 +59,10 @@ let kartenLayer={
         "http://wmts.kartetirol.at/wmts/gdi_summer/GoogleMapsCompatible/{z}/{x}/{y}.jpeg80", {
           
             attribution : "Datenquelle: <a href='https://www.data.gv.at/katalog/dataset/land-tirol_elektronischekartetirol'>data.gv.at"
+    }),
+    nomenklatur : L.tileLayer(
+        "http://wmts.kartetirol.at/wmts/gdi_nomenklatur/GoogleMapsCompatible/{z}/{x}/{y}.png8",{
+            attribution : "Datenquelle <a href='https://www.data.gv.at/katalog/dataset/land-tirol_elektronischekartetirol'>data.gv.at"
     }),    
 
 }
@@ -77,10 +81,12 @@ let meineKarteControl = L.control.layers({
     "Geoland Basemap" : kartenLayer.geolandbasemap,
     "Orthofoto" : kartenLayer.ortho,
     "Winter" : kartenLayer.winter,
-    "Sommer" : kartenLayer.sommer
+    "Sommer" : kartenLayer.sommer,
+    
 },{
     //overlays
     "Beschriftung" : kartenLayer.bmapoverlay,
+    "Nomenklatur" : kartenLayer.nomenklatur,
     "Etappe 11 - Koordinaten" : koordGruppe,
     "Start & Ziel Marker" : markerGruppe,
     //Ziel" :  markerGruppe,
