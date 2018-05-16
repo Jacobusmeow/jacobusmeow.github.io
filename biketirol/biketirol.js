@@ -121,7 +121,13 @@ let gpxTrack = new L.GPX("data/etappe11.gpx", {
     async : true,
 }).addTo(koordGruppe);
 gpxTrack.on("loaded", function(evt){
-    meineKarte.fitBounds(evt.target.getBounds())
+    console.log("get_distance",evt.target.get_distance().toFixed(0));
+    console.log("elevation_min",evt.target.get_elevation_min().toFixed(0));
+    console.log("elevation_max",evt.target.get_elevation_max().toFixed(0));
+    console.log("elevation_gain",evt.target.get_elevation_gain().toFixed(0));
+    let dis = evt.target.get_distance().toFixed(0);
+    document.getElementById("dis").innerHTML = dis;
+    meineKarte.fitBounds(evt.target.getBounds());
 })
 
 
