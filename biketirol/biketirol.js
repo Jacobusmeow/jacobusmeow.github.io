@@ -40,11 +40,11 @@ let kartenLayer={
             subdomains : ["maps", "maps1", "maps2", "maps3"], 
             attribution : "Datenquelle: <a href='https://www.basemap.at'>basemap.at" 
     }),
-    bmapoverlay : L.tileLayer (
+    /*bmapoverlay : L.tileLayer (
         "https://{s}.wien.gv.at/basemap/bmapoverlay/normal/google3857/{z}/{y}/{x}.png", {
             subdomains : ["maps", "maps1", "maps2", "maps3", "maps4"], 
             attribution : "Datenquelle: <a href='https://www.basemap.at'>basemap.at" 
-        }),
+        }),*/
     ortho : L.tileLayer(
         "http://wmts.kartetirol.at/wmts/gdi_ortho/GoogleMapsCompatible/{z}/{x}/{y}.jpeg80", {
            
@@ -85,12 +85,16 @@ let meineKarteControl = L.control.layers({
     
 },{
     //overlays
-    "Beschriftung" : kartenLayer.bmapoverlay,
+    //"Beschriftung" : kartenLayer.bmapoverlay,
     "Nomenklatur" : kartenLayer.nomenklatur,
-    "Etappe 11 - Koordinaten" : koordGruppe,
     "Start & Ziel Marker" : markerGruppe,
+    "Etappe 11 - GPX-Track" : koordGruppe,
+    
     //Ziel" :  markerGruppe,
 });
+//fullscreen: 
+meineKarte.addControl(new L.Control.Fullscreen(map));
+
 //marker + popups 
 const start = [47.668714, 12.404299];
 const ziel = [47.44637, 12.390424];
@@ -111,7 +115,18 @@ let zielMarker = L.marker(ziel,
         
 })}).addTo(markerGruppe);
     zielMarker.bindPopup("<h3>Ziel in Kitzbühel</h3><p><a href='https://de.wikipedia.org/wiki/Kitzbühel'>Informationen</a></p>");
-//strecke: 
+//Strecke aus gpx:
+
+let gpxTrack = new L.GPX("data/etappe11.gpx", {
+    async : true,
+}).addTo(koordGruppe);
+gpxTrack.on("loaded", function(evt){
+    meineKarte.fitBounds(evt.target.getBounds())
+})
+
+
+
+    /*strecke: brauche ich nicht mehr, da die gpx-datei direkt geladen wird. 
 let geojson = L.geoJSON(data11).addTo(koordGruppe);
 geojson.bindPopup(function(layer){
     console.log("Layer for Popup:", layer.feature.geometry);
@@ -119,6 +134,7 @@ geojson.bindPopup(function(layer){
     const popupText =`<p>${props.coordinates}</p>`;
     return popupText; 
 });
+*/
 //zur Karte hinzufügen: 
 meineKarte.addControl(meineKarteControl);
 //Zoom auf alle Marker und Popups
