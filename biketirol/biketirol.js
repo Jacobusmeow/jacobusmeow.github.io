@@ -121,12 +121,22 @@ let gpxTrack = new L.GPX("data/etappe11.gpx", {
     async : true,
 }).addTo(koordGruppe);
 gpxTrack.on("loaded", function(evt){
-    console.log("get_distance",evt.target.get_distance().toFixed(0));
-    console.log("elevation_min",evt.target.get_elevation_min().toFixed(0));
-    console.log("elevation_max",evt.target.get_elevation_max().toFixed(0));
-    console.log("elevation_gain",evt.target.get_elevation_gain().toFixed(0));
+    //console.log("get_distance",evt.target.get_distance().toFixed(0));
+    //console.log("elevation_min",evt.target.get_elevation_min().toFixed(0));
+    //console.log("elevation_max",evt.target.get_elevation_max().toFixed(0));
+    //console.log("elevation_gain",evt.target.get_elevation_gain().toFixed(0));
     let dis = evt.target.get_distance().toFixed(0);
+    let elevMin = evt.target.get_elevation_min().toFixed(0);
+    //console.log (elevMin);
+    let elevMax = evt.target.get_elevation_max().toFixed(0);
+    let up = evt.target.get_elevation_gain().toFixed(0);
+    let down = evt.target.get_elevation_loss().toFixed(0);
+
     document.getElementById("dis").innerHTML = dis;
+    document.getElementById("elevMin").innerHTML = elevMin;
+    document.getElementById("elevMax").innerHTML = elevMax;
+    document.getElementById("up").innerHTML = up;
+    document.getElementById("down").innerHTML = down;
     meineKarte.fitBounds(evt.target.getBounds());
 })
 
