@@ -57,7 +57,8 @@ karte.addControl(kartenAuswahl);
 
 // Grundkarte "grau" laden
 karte.addLayer(grundkartenLayer.bmapgrau)
-
+//fullscreen:
+karte.addControl(new L.Control.Fullscreen(divKarte));
 // Maßstabsleiste metrisch hinzufügen
 L.control.scale({
     maxWidth: 200,
