@@ -30,6 +30,7 @@
 let meineKarte = L.map("map");
 let markerGruppe = L.featureGroup();
 let koordGruppe = L.featureGroup();
+let steigungOverlay = L.featureGroup().addTo(meineKarte);
 let kartenLayer={
     osm: L.tileLayer(
         "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", { 
@@ -89,6 +90,8 @@ let meineKarteControl = L.control.layers({
     "Nomenklatur" : kartenLayer.nomenklatur,
     "Start & Ziel Marker" : markerGruppe,
     "Etappe 11 - GPX-Track" : koordGruppe,
+    "Steigungslinie" : steigungOverlay,
+    //"Höhenprofil" : elevation,
     
     //Ziel" :  markerGruppe,
 });
@@ -139,7 +142,26 @@ gpxTrack.on("loaded", function(evt){
     document.getElementById("down").innerHTML = down;
     meineKarte.fitBounds(evt.target.getBounds());
 })
+gpxTrack.on("addline", function(evt){ //nimmt bezug auf let gpxTrack
+    elevation.addData(evt.line)
+    console.log(evt.line);
+    console.log(evt.line.getLatLngs());
+    console.log(evt.line.getLatLngs()[0]);
+    console.log(evt.line.getLatLngs()[0].lat);
+    console.log(evt.line.getLatLngs()[0].lng);
+    console.log(evt.line.getLatLngs()[0].meta);
+    console.log(evt.line.getLatLngs()[0].meta.ele);
+});
+//elevation-control:
+let elevation = L.control.elevation(
+    {
+        position : "bottomright",
+        theme : "steelblue-theme",
+        collapsed : true,
 
+    }
+).addTo(meineKarte);
+		
 
 
     /*strecke: brauche ich nicht mehr, da die gpx-datei direkt geladen wird. 
@@ -150,6 +172,10 @@ geojson.bindPopup(function(layer){
     const popupText =`<p>${props.coordinates}</p>`;
     return popupText; 
 });
+
+
+
+
 */
 //zur Karte hinzufügen: 
 meineKarte.addControl(meineKarteControl);
