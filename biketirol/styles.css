@@ -49,9 +49,10 @@ body {
 }
 
 #map {
-    width: 100%;
-    height: 760px;
+    width: 80%;
+    height: 660px;
     border: 1px solid gray;
+
 }
 
 #footer {
